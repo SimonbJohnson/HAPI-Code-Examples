@@ -4,7 +4,7 @@
 
 ### Python
 
-'''python
+```python
 import fetch from 'node-fetch'
 
 async function fetchData(baseUrl, limit = 1000) {
@@ -39,11 +39,11 @@ const LIMIT = 1000;
 fetchData(BASE_URL, LIMIT).then(results => {
     console.log(results);
 });
-'''
+```
 
 ### Javascript
 
-'''javascript
+```javascript
 async function fetchData(baseUrl, limit = 1000) {
     let idx = 0;
     let results = [];
@@ -77,11 +77,11 @@ window.onload = async function() {
     const results = await fetchData(BASE_URL, LIMIT);
     console.log(results);
 };
-'''
+```
 
 ### Node
 
-'''javascript
+```javascript
 import fetch from 'node-fetch'
 
 async function fetchData(baseUrl, limit = 1000) {
@@ -116,7 +116,7 @@ const LIMIT = 1000;
 fetchData(BASE_URL, LIMIT).then(results => {
     console.log(results);
 });
-'''
+```
 
 ## 2. Query 3W end point and loop through pages
 
