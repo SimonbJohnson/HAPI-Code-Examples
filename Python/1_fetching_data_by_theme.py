@@ -35,7 +35,8 @@ def fetch_data(base_url, limit=1000):
     return results
 
 THEME = "3w"
-BASE_URL = f"https://stage.hapi-humdata-org.ahconu.org/api/themes/{THEME}?output_format=json"
+LOCATION = "AFG"
+BASE_URL = f"https://stage.hapi-humdata-org.ahconu.org/api/themes/{THEME}?output_format=json&location_code={LOCATION}"
 LIMIT = 1000
 
 

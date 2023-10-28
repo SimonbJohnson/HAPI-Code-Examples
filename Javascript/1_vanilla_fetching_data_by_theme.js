@@ -25,7 +25,8 @@ async function fetchData(baseUrl, limit = 1000) {
 }
 
 const THEME = "3W"
-const BASE_URL = `https://stage.hapi-humdata-org.ahconu.org/api/themes/${THEME}?output_format=json`;
+const LOCATION = "AFG"
+const BASE_URL = `https://stage.hapi-humdata-org.ahconu.org/api/themes/${THEME}?output_format=json&location_code=${LOCATION}`;
 const LIMIT = 1000;
 
 window.onload = async function() {
