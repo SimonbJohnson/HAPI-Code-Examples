@@ -2,7 +2,10 @@
 
 ## 1. Query a theme end point and loop through pages
 
-Themes are the core data of the API.  The results are paginated and so multiple calls are needed to get the whole dataset.  Below we query the 3W theme for Afghanistan and return all results into a single object.  To query a different theme or country change the constant variable of ```THEME``` to another theme of ```LOCATION``` to a different ISO3 country code.
+Themes are the core data of the API.  The results are paginated and so multiple calls are needed to get the whole dataset.  Below we query the 3W theme for Afghanistan and return all results into a single object.  To query a different theme or country change the constant variable of ```THEME``` to another theme or ```LOCATION``` to a different ISO3 country code.
+
+The current themes supported ```population```, ```3w```.
+The current countries supported ```AFG```, ```MLI```, ```NGA```
 
 ### Python
 
