@@ -180,19 +180,29 @@ const ADMIN1 = "AF01"
 const BASE_URL = `https://stage.hapi-humdata-org.ahconu.org/api/themes/${THEME}?output_format=json&location_code=${LOCATION}&admin1_code=${ADMIN1}`;
 ```
 
-## 3. Query Population end point and filter for Female Population
+## 3. Get data from supporting tables
+
+Each supporting table such as ```orgs```, ```orgs_type```, ```sector``` and more have a unique URL to call to get the range of possible values.  Below we show the URL for getting of the sector names and codes.  Change the code at the top to have a new ```BASEURL``` and remove the URL parameters above it. Full code examples can be seen in the example repo.
+
+### Python
+
+```python
+BASE_URL "https://stage.hapi-humdata-org.ahconu.org/api/sector?output_format=json&offset=0&limit=1000"
+```
+
+### Javascript
+
+```python
+CONST BASE_URL "https://stage.hapi-humdata-org.ahconu.org/api/sector?output_format=json&offset=0&limit=1000"
+```
+
+## 4. Get admin level data for a country
 
 ### Python
 
 ### Javascript
 
-## 4. Query 3W end point and filter for health sector
-
-### Python
-
-### Javascript
-
-## 5. Get admin level data for a country
+## 5. Download as CSV
 
 ## 6. Query Population and join to GeoJson from ITOS service
 
@@ -209,5 +219,3 @@ const BASE_URL = `https://stage.hapi-humdata-org.ahconu.org/api/themes/${THEME}?
 ## 8. Load data intoa google spreadsheet using app script and periodically update
 
 ### App script
-
-## 9. Get admin level data for a country
