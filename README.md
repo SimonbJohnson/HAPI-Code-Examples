@@ -57,7 +57,7 @@ results = fetch_data(BASE_URL, LIMIT)
 print(results)
 ```
 
-### Javascript
+### Plain Javascript
 
 ```javascript
 async function fetchData(baseUrl, limit = 1000) {
@@ -138,11 +138,47 @@ fetchData(BASE_URL, LIMIT).then(results => {
 });
 ```
 
-## 2. Query 3W end point and loop through pages
+## 2. Filtering results
+
+It is possible to add extra filters to the call to get a subset of results. To see the full set of filters that can be used for each theme, please check this documentation:
+
+https://stage.hapi-humdata-org.ahconu.org/docs#/humanitarian-response/
 
 ### Python
 
-### Javascript
+#### Filter by Sector
+
+Change the code to include a new parameter in the URL. Please check the example repository for the full code.
+
+```python
+SECTOR= urllib.parse.quote("Emergency Shelter and NFI")
+BASE_URL = f"https://stage.hapi-humdata-org.ahconu.org/api/themes/{THEME}?output_format=json&location_code={LOCATION}&sector_name={SECTOR}"
+```
+
+#### Filter by Admin1
+
+```python
+ADMIN1= "AF01"
+BASE_URL = f"https://stage.hapi-humdata-org.ahconu.org/api/themes/{THEME}?output_format=json&location_code={LOCATION}&admin1_code={ADMIN1}"
+```
+
+### Plain Javascript and Node
+
+Change the code to include a new parameter in the URL. Please check the example repository for the full code.
+
+#### Filter by Sector
+
+```javascript
+const SECTOR = "Emergency Shelter and NFI"
+const BASE_URL = `https://stage.hapi-humdata-org.ahconu.org/api/themes/${THEME}?output_format=json&location_code=${LOCATION}&sector_name=${SECTOR}`;
+```
+
+#### Filter by Admin1
+
+```javascript
+const ADMIN1 = "AF01"
+const BASE_URL = `https://stage.hapi-humdata-org.ahconu.org/api/themes/${THEME}?output_format=json&location_code=${LOCATION}&admin1_code=${ADMIN1}`;
+```
 
 ## 3. Query Population end point and filter for Female Population
 
