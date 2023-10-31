@@ -138,6 +138,48 @@ fetchData(BASE_URL, LIMIT).then(results => {
 });
 ```
 
+### R
+
+```R
+library(jsonlite)
+library(httr)
+
+fetch_data <- function(base_url, limit = 1000) {
+  idx <- 0
+  results <- list()
+  
+  while(TRUE) {
+    offset <- idx * limit
+    url <- paste0(base_url, "&offset=", offset, "&limit=", limit)
+    
+    response <- GET(url)
+    
+    cat("Getting results", offset, "to", offset + limit - 1, "\n")
+    
+    json_response <- fromJSON(content(response, "text"))
+    
+    results <- append(results, list(json_response))
+    
+    # If the returned results are less than the limit, it's the last page
+    if(length(json_response) < limit) {
+      break
+    }
+    
+    idx <- idx + 1
+  }
+  
+  return(results)
+}
+
+THEME <- "3w"
+LOCATION <- "AFG"
+BASE_URL <- paste0("https://stage.hapi-humdata-org.ahconu.org/api/themes/", THEME, "?output_format=json&location_code=", LOCATION)
+LIMIT <- 1000
+
+results <- fetch_data(BASE_URL, LIMIT)
+print(results)
+```
+
 ## 2. Filtering results
 
 It is possible to add extra filters to the call to get a subset of results. To see the full set of filters that can be used for each theme, please check this documentation:
