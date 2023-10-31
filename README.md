@@ -219,3 +219,81 @@ CONST BASE_URL "https://stage.hapi-humdata-org.ahconu.org/api/sector?output_form
 ## 8. Load data intoa google spreadsheet using app script and periodically update
 
 ### App script
+
+#### 1. Create a New Google Spreadsheet:
+
+Create a new Google Spreadsheet where you want to load the data.
+
+#### 2. Open the Script Editor:
+
+Click on Extensions -> Apps Script in the top menu to open the Google Apps Script editor.
+
+#### 3. Use this code
+
+A simple script that will fetch the API data and place it in the spreadsheet
+
+```javascript
+function loadApiData() {
+  var baseUrl = "https://stage.hapi-humdata-org.ahconu.org/api/themes/3w?output_format=json";
+  var limit = 10000;
+  var offset = 0;
+  
+  var allData = [];
+
+  while (true) {
+    // Fetch data from the current page
+    var url = baseUrl + "&offset=" + offset + "&limit=" + limit;
+    var response = UrlFetchApp.fetch(url);
+    var jsonData = JSON.parse(response.getContentText());
+    
+    // If there's no data or less data than the limit, break out of the loop
+    if (!jsonData.length || jsonData.length < limit) {
+      allData = allData.concat(jsonData);
+      break;
+    }
+
+    // Otherwise, store the data and increment the offset for the next page
+    allData = allData.concat(jsonData);
+    offset += limit;
+  }
+
+  // Convert the JSON data to a 2D array for the spreadsheet
+  var dataArray = [];
+  
+  // If there's data, add headers from the first item's keys
+  if (allData.length > 0) {
+    dataArray.push(Object.keys(allData[0]));
+  }
+
+  allData.forEach(function(item) {
+    var row = [];
+    for (var key in item) {
+      row.push(item[key]);
+    }
+    dataArray.push(row);
+  });
+
+  // Get the active sheet and clear existing data
+  var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  sheet.clear();
+
+  // Write the headers and data to the spreadsheet
+  if (dataArray.length > 0) {
+    sheet.getRange(1, 1, dataArray.length, dataArray[0].length).setValues(dataArray);
+  }
+}
+
+```
+
+#### 4. Set up a Daily Trigger:
+
+- Click on the clock icon on the left sidebar to view the project's triggers.
+- Click on the + Add Trigger button at the bottom right.
+- Set the function to loadApiData, the deployment to Head, the event source to Time-driven, and then select Day timer to choose a specific time of day.
+- Click Save.
+
+#### 5. Authorize the Script:
+
+When you run the script for the first time or set up a trigger, it will ask for permissions. Make sure to grant them so the script can access the external API and modify your Google Spreadsheet.
+
+Now, the script will run daily at the time you specified and load the API data into your Google Spreadsheet.
