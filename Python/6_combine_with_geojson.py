@@ -92,5 +92,3 @@ geojson_url = "https://apps.itos.uga.edu/codv2api/api/v1/themes/cod-ab/locations
 geojson_data = download_geojson(geojson_url)
 updated_geojson = append_population_to_geojson(geojson_data, results)
 save_geojson(updated_geojson, 'updated_data.geojson')
-
-#####
