@@ -234,11 +234,23 @@ BASE_URL "https://stage.hapi-humdata-org.ahconu.org/api/sector?output_format=jso
 
 ### Javascript
 
-```python
+```javascript
 CONST BASE_URL "https://stage.hapi-humdata-org.ahconu.org/api/sector?output_format=json&offset=0&limit=1000"
 ```
 
 ## 4. Get admin level data for a country
+
+The admin1 and admin2 api end points provide data about subnational adminstration boundary names and p-codes (place codes). The geometry associated with each admin boundary is not yet available via the API, but it can be downloaded from HDX or obtained from the ITOS API service.  To query the adminstration area endputs use the URL below
+
+```python
+BASE_URL = "https://stage.hapi-humdata-org.ahconu.org/api/admin1?location_code=MLI&output_format=json&offset=0&limit=1000"
+```
+
+### Javascript
+
+```javascript
+CONST BASE_URL = "https://stage.hapi-humdata-org.ahconu.org/api/admin1?location_code=MLI&output_format=json&offset=0&limit=1000"
+```
 
 ### Python
 
@@ -246,19 +258,25 @@ CONST BASE_URL "https://stage.hapi-humdata-org.ahconu.org/api/sector?output_form
 
 ## 5. Download as CSV
 
+The code examples so far have been using JSON output and then processing this data. To query this data as csv, change the output format to csv as per the examples below. Visiting this URL through the browser will download the CSV to then be used on your computer.
+
+```python
+BASE_URL = "https://stage.hapi-humdata-org.ahconu.org/api/admin1?location_code=MLI&output_format=csv&offset=0&limit=1000"
+```
+
+### Javascript
+
+```javascript
+CONST BASE_URL = "https://stage.hapi-humdata-org.ahconu.org/api/admin1?location_code=MLI&output_format=csv&offset=0&limit=1000"
+```
+
 ## 6. Query Population and join to GeoJson from ITOS service
 
 ### Python
 
 ### Javascript
 
-## 7. Query 3W from 3 countries and join data together
-
-### Python
-
-### Javascript
-
-## 8. Load data intoa google spreadsheet using app script and periodically update
+## 7. Load data intoa google spreadsheet using app script and periodically update
 
 ### App script
 
