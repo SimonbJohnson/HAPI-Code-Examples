@@ -252,10 +252,6 @@ BASE_URL = "https://stage.hapi-humdata-org.ahconu.org/api/admin1?location_code=M
 CONST BASE_URL = "https://stage.hapi-humdata-org.ahconu.org/api/admin1?location_code=MLI&output_format=json&offset=0&limit=1000"
 ```
 
-### Python
-
-### Javascript
-
 ## 5. Download as CSV
 
 The code examples so far have been using JSON output and then processing this data. To query this data as csv, change the output format to csv as per the examples below. Visiting this URL through the browser will download the CSV to then be used on your computer.
@@ -271,6 +267,8 @@ CONST BASE_URL = "https://stage.hapi-humdata-org.ahconu.org/api/admin1?location_
 ```
 
 ## 6. Query Population and join to GeoJson from ITOS service
+
+
 
 ### Python
 
