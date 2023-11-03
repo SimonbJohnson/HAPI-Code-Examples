@@ -84,7 +84,7 @@ THEME = "population"
 LOCATION = "AFG"
 AGE_RANGE_CODE = "80%2B"
 GENDER = "f"
-BASE_URL = f"https://stage.hapi-humdata-org.ahconu.org/api/themes/{THEME}?output_format=json&location_code={LOCATION}&age_range_code={AGE_RANGE_CODE}&gender={GENDER}"
+BASE_URL = f"https://stage.hapi-humdata-org.ahconu.org/api/themes/{THEME}?output_format=json&location_code={LOCATION}&age_range_code={AGE_RANGE_CODE}&gender={GENDER}&admin1_is_unspecified=false&admin2_is_unspecified=true"
 LIMIT = 1000
 results = fetch_data(BASE_URL, LIMIT)
 
