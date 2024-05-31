@@ -19,15 +19,15 @@ def fetch_data(base_url, limit=1000):
     while True:
         offset = idx * limit
         url = f"{base_url}&offset={offset}&limit={limit}"
-        
+        print(url)
         with urllib.request.urlopen(url) as response:
             print(f"Getting results {offset} to {offset+limit-1}")
             json_response = json.loads(response.read())
             
-            results.extend(json_response)
+            results.extend(json_response['data'])
             
             # If the returned results are less than the limit, it's the last page
-            if len(json_response) < limit:
+            if len(json_response['data']) < limit:
                 break
         
         idx += 1
@@ -80,11 +80,11 @@ def save_geojson(geojson, filename):
         json.dump(geojson, file)
         print(f"GeoJSON saved to {filename}")
 
-THEME = "population"
+THEME = "population-social/population"
 LOCATION = "AFG"
-AGE_RANGE_CODE = "80%2B"
+AGE_RANGE_CODE = "0-4"
 GENDER = "f"
-BASE_URL = f"https://stage.hapi-humdata-org.ahconu.org/api/themes/{THEME}?output_format=json&location_code={LOCATION}&age_range_code={AGE_RANGE_CODE}&gender={GENDER}&admin1_is_unspecified=false&admin2_is_unspecified=true"
+BASE_URL = f"https://stage.hapi-humdata-org.ahconu.org/api/v1/{THEME}?output_format=json&location_code={LOCATION}&age_range_code={AGE_RANGE_CODE}&gender={GENDER}&admin_level=1&app_identifier={ your app identifier }"
 LIMIT = 1000
 results = fetch_data(BASE_URL, LIMIT)
 

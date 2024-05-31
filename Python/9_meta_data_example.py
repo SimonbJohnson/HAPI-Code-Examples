@@ -24,20 +24,21 @@ def fetch_data(base_url, limit=1000):
             print(f"Getting results {offset} to {offset+limit-1}")
             json_response = json.loads(response.read())
             
-            results.extend(json_response['data'])
+            results.extend(json_response)
             
             # If the returned results are less than the limit, it's the last page
-            if len(json_response['data']) < limit:
+            if len(json_response) < limit:
                 break
         
         idx += 1
         
     return results
 
-THEME = "coordination-context/operational-presence"
-LOCATION = "AFG"
-BASE_URL = f"https://stage.hapi-humdata-org.ahconu.org/api/v1/{THEME}?output_format=json&location_code={LOCATION}&app_identifier=Y29kZSBleGFtcGxlIHRlc3Rpbmc6c2ltb24uam9obnNvbkB1bi5vcmc="
+URL = f"https://stage.hapi-humdata-org.ahconu.org/api/themes/population?gender_code=f&age_range_code=0-4&resource_update_date_min=2020-01-01&resource_update_date_max=2024-12-31&admin2_name=Awka%20North&output_format=json"
 LIMIT = 1000
 
 results = fetch_data(BASE_URL, LIMIT)
-print(results)
+print(results[0])
+resource_id = results[0]["resource_hdx_id"]
+
+URL_META = f"https://stage.hapi-humdata-org.ahconu.org/api/resource?hdx_id={resource_id}&update_date_min=2020-01-01&update_date_max=2024-12-31&output_format=json&offset=0&limit=1000"
